@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <title>JS + CSS Clock</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 
   <style>
     html {
-      background:#018DED url(http://unsplash.it/1500/1000?image=881&blur);
+      background:#018DED url(http://unsplash.it/1500/1000?image=881);
       background-size:cover;
-      font-family:'helvetica neue';
+      font-family:'Lato';
       text-align: center;
       font-size: 10px;
     }
@@ -45,7 +46,6 @@
       height: 100%;
       transform: translateY(-3px);
     }
-
     .hand {
       width:50%;
       height:5px;
@@ -57,36 +57,152 @@
       /* transition: all 0.05s; */
       transition-timing-function: cubic-bezier(0, 2.56, 0.58, 1);
     }
-
+    .time {
+      display: block;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      text-align: center;
+      font-size: 340%;
+      text-shadow: 2px 2px 11px rgba(0, 0, 0, 1);
+    }
+    .center-time {
+      position: relative;
+      display: inline-block;
+    }
+    .greeting {
+      font-size: 70%;
+      text-align: center;
+      margin-top: 0;
+      color: white;
+    }
+    .imageCycle1 {
+      background:#018DED url(1.jpg);
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+    .imageCycle2 {
+      background:#018DED url(2.jpg);
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+    .imageCycle3 {
+      background:#018DED url(3.jpg);
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+    .imageCycle4 {
+      background:#018DED url(4.jpg);
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+    .imageCycle5 {
+      background:#018DED url(5.jpg);
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+    .imageCycle6 {
+      background:#018DED url(6.jpg);
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+    .imageCycle7 {
+      background:#018DED url(7.jpg);
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+    .imageCycle8 {
+      background:#018DED url(8.jpg);
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
   </style>
 
-    <div class="clock">
+    <!-- <div class="clock">
       <div class="clock-face">
         <div class="hand hour-hand"></div>
         <div class="hand min-hand"></div>
         <div class="hand second-hand"></div>
       </div>
+    </div> -->
+    <div class="time">
+      <div class="center-time">
+        <h1 class="hours-digital" style="display:inline;color:white;"></h1>
+        <h1 style="display:inline;color:white;">:</h1>
+        <h1 class="minutes-digital" style="display:inline;color:white;"></h1>
+        <!-- <h1 style="display:inline;color:white;">:</h1>
+        <h1 class="seconds-digital" style="display:inline;color:white;"></h1> -->
+        <h4 class="am-pm" style="display:inline;color:white;"></h4>
+      </div>
+      <h4 class="greeting">Good <span class="timeOfDay"></span></h4>
     </div>
+
   <script>
 
-    const secondHand = document.querySelector('.second-hand');
-    const minuteHand = document.querySelector('.min-hand');
-    const hourHand = document.querySelector('.hour-hand');
+  $(document).ready(function(){
+    var classCycle=['imageCycle1','imageCycle2','imageCycle3','imageCycle4','imageCycle5','imageCycle6','imageCycle7','imageCycle8'];
+    var randomNumber = Math.floor(Math.random() * classCycle.length);
+    var classToAdd = classCycle[randomNumber];
+    $('html').addClass(classToAdd);
+    // const secondHand = document.querySelector('.second-hand');
+    // const minuteHand = document.querySelector('.min-hand');
+    // const hourHand = document.querySelector('.hour-hand');
     function setDate() {
       const now = new Date();
       const seconds = now.getSeconds();
-      const secondsDegrees = ((seconds / 60) * 360) + 90; // This translates the seconds to degrees + add 90 so that it will line up vertically (at 12:00) and not horizontally
-      secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+      // const secondsDegrees = ((seconds / 60) * 360) + 90; // This translates the seconds to degrees + add 90 so that it will line up vertically (at 12:00) and not horizontally
+      // secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
 
       const minutes = now.getMinutes();
-      const minutesDegrees = ((minutes / 60) * 360) + 90;
-      minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
+      function addZero() {
+        newMinutes = ('0' + minutes).slice(-2);
+      };
+      addZero();
+      // const minutesDegrees = ((minutes / 60) * 360) + 90;
+      // minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
 
-      const hours = now.getHours();
-      const hoursDegrees = ((hours / 12) * 360) + 90;
-      hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+      hours = now.getHours();
+
+      // Sets AM/PM and time of day
+      if (12 < hours && hours < 16) {
+        timeOfDay = "afternoon";
+        if (hours == 12) {
+          newHours = 12;
+        } else {
+          newHours = hours - 12;
+        };
+        AMPM = "PM";
+      } else if (17 < hours && hours < 24) {
+        timeOfDay = "evening";
+        newHours = hours - 12;
+        AMPM = "PM";
+      } else {
+        timeOfDay = "morning";
+        newHours = hours;
+        AMPM = "AM";
+      };
+
+      // const hoursDegrees = ((hours / 12) * 360) + 90;
+      // hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+
+      // document.querySelector('.hours-digital').innerHTML = newHours;
+      document.querySelector('.hours-digital').innerHTML = newHours;
+      document.querySelector('.minutes-digital').innerHTML = newMinutes;
+      // document.querySelector('.seconds-digital').innerHTML = seconds;
+      document.querySelector('.am-pm').innerHTML = AMPM;
+      document.querySelector('.timeOfDay').innerHTML = timeOfDay;
     }
     setInterval(setDate, 1000); // Every second = 1000 milliseconds
+  });
+
   </script>
 </body>
 </html>
