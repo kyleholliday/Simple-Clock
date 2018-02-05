@@ -8,9 +8,61 @@
 <body>
 
   <style>
+  .imageCycle1 {
+    background:#018DED url(1.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+  .imageCycle2 {
+    background:#018DED url(2.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+  .imageCycle3 {
+    background:#018DED url(3.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+  .imageCycle4 {
+    background:#018DED url(4.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+  .imageCycle5 {
+    background:#018DED url(5.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+  .imageCycle6 {
+    background:#018DED url(6.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+  .imageCycle7 {
+    background:#018DED url(7.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+  .imageCycle8 {
+    background:#018DED url(8.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+  .imageCycle9 {
+    background:#018DED url(9.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
     html {
-      background:#018DED url(http://unsplash.it/1500/1000?image=881);
-      background-size:cover;
       font-family:'Lato';
       text-align: center;
       font-size: 10px;
@@ -76,54 +128,6 @@
       margin-top: 0;
       color: white;
     }
-    .imageCycle1 {
-      background:#018DED url(1.jpg);
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-    }
-    .imageCycle2 {
-      background:#018DED url(2.jpg);
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-    }
-    .imageCycle3 {
-      background:#018DED url(3.jpg);
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-    }
-    .imageCycle4 {
-      background:#018DED url(4.jpg);
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-    }
-    .imageCycle5 {
-      background:#018DED url(5.jpg);
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-    }
-    .imageCycle6 {
-      background:#018DED url(6.jpg);
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-    }
-    .imageCycle7 {
-      background:#018DED url(7.jpg);
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-    }
-    .imageCycle8 {
-      background:#018DED url(8.jpg);
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-    }
   </style>
 
     <!-- <div class="clock">
@@ -148,10 +152,11 @@
   <script>
 
   $(document).ready(function(){
-    var classCycle=['imageCycle1','imageCycle2','imageCycle3','imageCycle4','imageCycle5','imageCycle6','imageCycle7','imageCycle8'];
+    var classCycle=['imageCycle1','imageCycle2','imageCycle3','imageCycle4','imageCycle5','imageCycle6','imageCycle7','imageCycle8','imageCycle9'];
     var randomNumber = Math.floor(Math.random() * classCycle.length);
     var classToAdd = classCycle[randomNumber];
     $('html').addClass(classToAdd);
+    console.log(classToAdd);
     // const secondHand = document.querySelector('.second-hand');
     // const minuteHand = document.querySelector('.min-hand');
     // const hourHand = document.querySelector('.hour-hand');
